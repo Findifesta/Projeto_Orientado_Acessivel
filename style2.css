@@ -1,0 +1,178 @@
+/* Propiedades CSS pequisadas:
+    1 - opacidade - usada para dar opacidade as imagens;
+    2 - degradê - usado para criar fundos em degradê;
+    3 - sombra - usado para dar sombra a textos;
+    4 - reflexão - usado para criar reflexo do conteúdo;
+    5 - dropdown - usado para criar uma caixa com texto ao passar o cursor sobre um parágrafro.
+*/
+
+body {
+    text-align: center;
+	background-image: url("imagens/bg.png");
+	color: #000;
+    font-size: 20px;
+}
+
+h1, h2, h3, .page, .site {
+    font-family: 'Sacramento', cursive;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+h2, h3 {
+    font-size: 35px;
+}
+
+a, .page {  
+    font-size: 25px;
+}
+
+a {
+    color: #6A45A5;  
+}
+
+a:hover {
+    color: #2b770a;
+}
+
+img {
+    border-radius: 100px;
+    border: 3px #46613a solid;
+    padding: 10px;
+}
+
+.linha {
+    display: flex;
+    
+}
+
+.servio {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+}
+
+.linha2 {
+    display: grid;
+}
+
+.bio {
+    display: grid;
+    width: 50%;
+    justify-content: center;
+    margin: auto;
+}
+
+.thayane {
+    display: flex;
+    float: right;
+    width: 50%;
+    justify-content: center;
+}
+
+table {
+    border: 1px #fff solid;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #74a85d;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px #fff solid;
+}
+
+.table {
+    display: flex;
+    justify-content: center;
+}
+
+#nome, #telefone, #email {
+    width: 250px;
+}
+
+#mensagem{
+    width: 350px;
+    height:150px;
+    resize:none;
+}
+
+fieldset {
+    border: 1px #fff solid;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.link {
+    list-style-type: none;
+}
+
+.curiosidades {
+    background-color: #87A57E;
+}
+
+.titulo {
+   background-color: #83A970;
+}
+
+.opacidade {
+    opacity: 0.5;
+}
+
+.opacidade:hover {
+    opacity: 1.0;
+    transition-duration: 2s;
+}
+
+.gradient {
+    background-image: linear-gradient(to right, rgba(212, 150, 248, 0.774) , rgb(0, 204, 255));
+    padding: 20px;
+}
+
+.shadow{
+    text-shadow: 2px 2px white;
+}
+
+button {
+    color: white;
+    background-color: #46613a;
+    padding: 10px 25px;
+    border-radius: 10px;
+    border: none;
+}
+
+button:hover {
+    background-color: #2b770a;
+}
+
+.reflections{
+    -webkit-box-reflect: right;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+.dropdownContent {
+    display: none;
+    position: absolute;
+    background-color: #46613a;
+    min-width: 100px;
+    box-shadow: 0px 8px 15px 0px rgba(0,0,0,0.2);
+    padding: 10px 15px;
+    z-index: 1;
+  }
+  
+.dropdown:hover .dropdownContent {
+    display: block;
+  }

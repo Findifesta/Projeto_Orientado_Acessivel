@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="titulo">
+        <h1 class="shadow">
+            Projeto orientado
+        </h1>
+    </div>
+    <a href="#conteudo-principal" id="pular-aqui">Pular para o Conteúdo</a>
+    <p class="page">
+        <a href="projetoOrientado-1.html" class="site">Home</a> | <a href="projetoOrientado-5.html" class="site">Sérgio
+            da Rocha</a> | <a href="projetoOrientado-4.html" class="site">Thatyane Marques</a> | <a
+            href="projetoOrientado-8.html" class="site">Thalles Palmarim</a> | <a href="projetoOrientado-2.html"
+            class="site">Tabela de curiosidades</a> | <a href="projetoOrientado-3.html" class="site">Sites favoritos</a>
+        | Contato | <a href="projetoOrientado-7.html" class="site">CSS</a>
+    </p>
+    <div id="conteudo-principal">
+        <h2>Contato</h2>
+
+        <p id="mensagem-erro" style="color: red;"></p>
+
+        <form method="post" action="http://hub.fatecrl.edu.br/sobrino/recebe-v2.php" id="formularioContato">
+            <p>
+                <label for="nome">Nome:</label>
+                <input type="text" name="nome" id="nome" minlength="2" maxlenght="45" autofocus placeholder="Seu nome">
+            </p>
+
+            <fieldset>
+                <legend>Com quem você deseja entrar em contato? (mais de uma opção disponível)</legend>
+                <input type="checkbox" name="Pessoa-Contato" value="Sergio" id="Sergio"><label
+                    for="Sergio">Sérgio</label>
+                <input type="checkbox" name="Pessoa-Contato" value="Thatyane" id="Thatyane"><label
+                    for="Thatyane">Thatyane</label>
+                <input type="checkbox" name="Pessoa-Contato" value="Thalles" id="Thalles"><label
+                    for="Thalles">Thalles</label>
+            </fieldset>
+            <p>
+                <label for="mensagem">Mensagem:</label>
+                <textarea name="mensagem" id="mensagem" maxlength="1000"
+                    placeholder="Mínimo de 20 caracteres"></textarea>
+            </p>
+            <p>
+                <label for="telefone">Seu telefone:</label>
+                <input type="tel" name="telefone" id="telefone" placeholder="Seu telefone">
+            </p>
+            <p>
+                <label for="email">Seu e-mail:</label>
+                <input type="email" name="email" id="email" placeholder="Seu e-mail">
+            </p>
+
+            <p>
+                <input type="submit">
+            </p>
+        </form>
+    </div>
+    <!-- Script do VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+        document.getElementById('formularioContato').addEventListener('submit', function (event) {
+            var nome = document.getElementById('nome').value;
+            var checkboxes = document.getElementsByName('Pessoa-Contato');
+            var mensagem = document.getElementById('mensagem').value;
+            var telefone = document.getElementById('telefone').value;
+            var email = document.getElementById('email').value;
+
+            var erroMensagem = document.getElementById('mensagem-erro');
+            erroMensagem.innerHTML = ""; // Limpa mensagens de erro anteriores
+
+            var camposVazios = [];
+
+            if (nome === "") {
+                camposVazios.push("Nome inválido, o campo não pode estar em branco!");
+                document.getElementById('nome').classList.add('campo-com-erro');
+            } else if (!/^[a-zA-ZÀ-ÖØ-öø-ÿ\s]+$/.test(nome)) {
+                camposVazios.push("Nome inválido, não pode conter números ou símbolos!");
+                document.getElementById('nome').classList.add('campo-com-erro');
+            }
+
+            var checkboxSelecionado = false;
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    checkboxSelecionado = true;
+                    break;
+                }
+            }
+            if (!checkboxSelecionado) {
+                camposVazios.push("Escolha pelo menos uma pessoa para contato");
+                checkboxes.forEach(function (checkbox) {
+                    checkbox.classList.add('campo-com-erro');
+                });
+            }
+
+            if (mensagem === "" || mensagem.length < 20) {
+                camposVazios.push("Mensagem inválida, deve ter pelo menos 20 caracteres!");
+                document.getElementById('mensagem').classList.add('campo-com-erro');
+            }
+
+            if (telefone === "") {
+                camposVazios.push("Telefone inválido, o campo não pode estar em branco!");
+                document.getElementById('telefone').classList.add('campo-com-erro');
+            } else if (telefone.length < 10 || !/^\d{2}\d{8,9}$/.test(telefone)) {
+                camposVazios.push("Telefone inválido, insira um número válido com DDD.");
+                document.getElementById('telefone').classList.add('campo-com-erro');
+            }
+
+            if (email === "") {
+                camposVazios.push("Email inválido, o campo não pode estar em branco!");
+                document.getElementById('email').classList.add('campo-com-erro');
+            }
+
+            if (camposVazios.length > 0) {
+                event.preventDefault();
+
+                erroMensagem.innerHTML = "Por favor, corrija os seguintes campos:<br>" + camposVazios.map(function (campo) {
+                    return "- " + campo;
+                }).join('<br>');
+            }
+
+        })
+    </script>
+</body>
+
+</html>
